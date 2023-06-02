@@ -1,7 +1,32 @@
 
 const User=require("../models/userModel");
 const validatorRegister = require("../validation/register");
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
+
+// Fonction pour créer un super admin
+const createSuperAdmin = async () => {
+  try {
+    const saltRounds = 10;
+    const password = 'superadmin12345';
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const superAdmin = new User({
+      email: 'superadmin1@gmail.com',
+      password: hashedPassword,
+      firstName: 'SuperAdmin',
+      name: 'SuperAdmin',
+      phone: '52933079',
+      role: 'SuperAdmin'
+    });
+
+    await superAdmin.save();
+    console.log('Super admin créé avec succès!');
+  } catch (error) {
+    console.error('Une erreur s\'est produite lors de la création du super admin:', error);
+  }
+};
+
+createSuperAdmin();
 const Register = async (req, res) =>
 {
     const { errors, isValid } = validatorRegister(req.body);
