@@ -1,7 +1,8 @@
 const mongoose=require('mongoose');
 require('dotenv').config()
 mongoose.set('strictQuery', false);
-mongoose.connect(process.env.url,function verifDb(error)
+mongoose.connect(`${process.env.url}`, {useNewUrlParser: true,
+useUnifiedTopology: true},function verifDb(error)
 {if(error){
     console.log('echec de connxion de base de donne');
 }
