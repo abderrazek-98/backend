@@ -35,5 +35,6 @@ router.route('/cart').post(productController.getCarts);
 router.route('/allcart').get(productController.getAllCart);
 router.route('/allcartconfirmer').get(productController.getAllCartConfirmer);
 router.route('/cart/:id').get(productController.getCartById);
-router.route('/cart/:id').delete(productController.deleteCart);
+router.route('/cart/:id').delete(productController.hiddenCart);
+router.route('/cartdelete/:id').delete(productController.deleteCart);
 module.exports = router;

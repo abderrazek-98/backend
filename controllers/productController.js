@@ -73,6 +73,7 @@ let details=[]
   } catch (error) {
     res.status(404).json(error.message);
   }
+console.log(new_product.image)
 };
 const deleteProduct = async (req, res) => {
   try {
@@ -83,6 +84,14 @@ const deleteProduct = async (req, res) => {
   }
 };
 const deleteCart = async (req, res) => {
+  try {
+    await CartModel.findOneAndDelete({ _id: req.params.id });
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (error) {
+    res.status(404).json(error.message);
+  }
+};
+const hiddenCart = async (req, res) => {
   try {
     const order = await CartModel.findOne({ _id: req.params.id });
     order.confirmed = true; // Mettez à jour la propriété "hidden" de la commande à true
@@ -134,6 +143,7 @@ const getCartById = async (req, res) => {
   } catch (error) {
     res.status(404).json(error.message);
   }
+  console.log(data.image);
 };
 const productByName=async (req ,res)=>{
 
@@ -183,6 +193,7 @@ module.exports = {
   getCarts,
   getAllCart,
   getCartById,
-  deleteCart,
+  hiddenCart,
   getAllCartConfirmer,
+  deleteCart,
 };
