@@ -4,7 +4,7 @@ const validatorRegister = require("../validation/register");
 const bcrypt = require('bcrypt');
 
 // Fonction pour créer un super admin
-const createSuperAdmin = async () => {
+/*const createSuperAdmin = async () => {
   try {
     const saltRounds = 10;
     const password = 'superadmin12345';
@@ -26,7 +26,7 @@ const createSuperAdmin = async () => {
   }
 };
 
-createSuperAdmin();
+createSuperAdmin();*/
 const Register = async (req, res) =>
 {
     const { errors, isValid } = validatorRegister(req.body);
